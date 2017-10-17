@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.tuionf.onlineread">
+
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.READ_LOGS" />
+
+    <application
+        android:name=".MyApplication"
+        android:allowBackup="true"
+        android:hardwareAccelerated="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme">
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="com.example.tuionf.onlineread.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
+        //---start 广点通---
+        <service
+            android:name="com.qq.e.comm.DownloadService"
+            android:exported="false" />
+
+        <activity
+            android:name="com.qq.e.ads.ADActivity"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenSize" />
+        //---end 广点通---
+        <activity
+            android:name=".ui.MainActivity"
+            android:configChanges="orientation|screenSize"
+            android:label="@string/app_name">
+            <!--<intent-filter>-->
+                <!--<action android:name="android.intent.action.MAIN" />-->
+                <!--&lt;!&ndash; <action android:name="android.intent.action.VIEW"></action> &ndash;&gt;-->
+                <!--<category android:name="android.intent.category.LAUNCHER" />-->
+
+                <!--&lt;!&ndash; <category android:name="android.intent.category.DEFAULT"></category> &ndash;&gt;-->
+                <!--&lt;!&ndash; <data android:mimeType="text/plain"></data> &ndash;&gt;-->
+                <!--&lt;!&ndash; <data android:mimeType="text/*"/> &ndash;&gt;-->
+            <!--</intent-filter>-->
+        </activity>
+        <activity android:name=".ui.FileActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <data android:mimeType="text/*" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".ui.SelectActivity" />
+        <activity android:name=".ui.SplashActivity" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <!-- <action android:name="android.intent.action.VIEW"></action> -->
+                <category android:name="android.intent.category.LAUNCHER" />
+
+                <!-- <category android:name="android.intent.category.DEFAULT"></category> -->
+                <!-- <data android:mimeType="text/plain"></data> -->
+                <!-- <data android:mimeType="text/*"/> -->
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>
